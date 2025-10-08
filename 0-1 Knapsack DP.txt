@@ -1,0 +1,46 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+    int Weight;
+    cin>>Weight;
+    vector<int> p = {1,4,5,7};
+    vector<int> w = {1,3,4,5};
+    
+    vector<int> b(Weight+1,0);
+    int n = p.size();
+    vector<vector<int>> keep(n,vector<int>(Weight+1, 0));
+    
+    //For Benifit Array
+    for(int k=0;k<n;k++)
+    {
+        int wk = w[k];
+        int bk = p[k];
+        for(int j=Weight;j>=wk;j--)
+        {
+            if(b[j-wk]+bk > b[j])
+            {
+                b[j] = b[j-wk]+bk;
+                keep[k][j] = 1;
+            }
+            else
+            {
+                keep[k][j]=0;
+            }
+        }
+    }
+    
+    cout << "Maximum profit: " << b[Weight-1] << endl;
+    int k = Weight;
+    //For Keep array
+    for(int i=n-1;i>=0;i--)
+    {
+        if(keep[i][k]==1)
+        {
+            cout<<i+1<<" is selected"<<"\t";
+            k = k - w[i];
+        }
+    }
+    return 0;
+}
