@@ -1,0 +1,43 @@
+// Coin change - Brute Force Approach
+#include<bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+    int n;
+    cin>>n;
+    vector<int> v(n);
+    for(int i=0;i<n;i++)
+    {
+        cin>>v[i];
+    }
+    int amount;
+    cin>>amount;
+    int count = 0;
+    sort(v.begin(),v.end(),greater<int>());
+    int i =0;
+    if(n==1)
+    {
+        if(amount%v[i]!=0){
+            count = -1;
+        }
+        else
+        {
+            count = amount/v[i];
+        }
+    }
+    else
+    {
+        while(amount!=0 && i<n)
+        {
+            amount = amount-v[i];
+            if(amount<v[i])
+            {
+                i++;
+            }
+            count++;
+        }
+    }
+    cout<<count<<" ";
+    return 0;
+}
