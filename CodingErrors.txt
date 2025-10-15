@@ -1,3 +1,4 @@
 Quicksort - used first element as pivot and getting correct output for each test case
 0/1 Knapsack DP - Corrected Code
 Coin Change - Brute Force - Correct Code
+Fractional Knapsack using Greedy Method - Correct Code - Logic (P/W ratio)
