@@ -1,5 +1,13 @@
 // Coin change - Brute Force Approach
-#include<bits/stdc++.h>
+/******************************************************************************
+
+Welcome to GDB Online.
+GDB online is an online compiler and debugger tool for C, C++, Python, Java, PHP, Ruby, Perl,
+C#, OCaml, VB, Swift, Pascal, Fortran, Haskell, Objective-C, Assembly, HTML, CSS, JS, SQLite, Prolog.
+Code, Compile, Run and Debug online from anywhere in world.
+
+*******************************************************************************/
+#include <bits/stdc++.h>
 using namespace std;
 
 int main()
@@ -13,39 +21,21 @@ int main()
     }
     int amount;
     cin>>amount;
-    int count = 0;
-    if(amount==0)
-    {
-        count = 0;
-    }
-    int i =0;
+    int i=0;
+    vector<int> res;
     sort(v.begin(),v.end(),greater<int>());
-    if(n==1)
+    while(amount>0 && i<n)
     {
-        if(amount%v[i]!=0){
-            count = -1;
+        if(amount<v[i])
+        {
+            i++;
         }
         else
         {
-            count = amount/v[i];
+            amount = amount - v[i];
+            res.push_back(v[i]);
         }
     }
-    else
-    {
-        while(amount!=0 && i<n)
-        {
-            amount = amount-v[i];
-            if(amount<v[i])
-            {
-                i++;
-            }
-            else if(amount<=0)
-            {
-                break;
-            }
-            count++;
-        }
-    }
-    cout<<count<<" ";
+    cout<<res.size()<<endl;
     return 0;
 }
