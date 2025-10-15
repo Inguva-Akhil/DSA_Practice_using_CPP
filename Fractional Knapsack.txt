@@ -1,0 +1,76 @@
+/*Fractional Knapsack
+Max Profit Value
+Min Profit Value
+Max P/W Ratio Value
+
+Max value of these 3 functions is the output
+*/
+#include <bits/stdc++.h>
+using namespace std;
+/*int MaxProfit(int knapsack,int n,vector<int> profit,vector<int> weight)
+{
+    int count=0;
+    
+}
+int MinProfit(int knapsack,int n,vector<int> profit,vector<int> weight)
+{
+    
+}*/
+int PWRatio(int knapsack,int n,vector<int> profit,vector<int> weight)
+{
+    int count=0;
+    vector<int> pw(n);
+    for(int i=0;i<n;i++)
+    {
+        pw[i] = profit[i]/weight[i];
+    }
+    sort(pw.begin(),pw.end(),greater<int>());
+    float res = 0.0;
+    for(int i=0;i<n;i++)
+    {
+        for(int j=0;j<n;j++)
+        {
+            if(pw[i] == profit[j]/weight[j])
+            {
+                if(knapsack<=0)
+                {
+                    break;
+                }
+                else if(knapsack < weight[j]&& knapsack>0)
+                {
+                    float wt = (knapsack*profit[j]);
+                    res+=(wt/weight[j]);
+                    knapsack = 0;
+                }
+                else
+                {
+                    res+=profit[j];
+                }
+                knapsack = knapsack-weight[j];
+                
+            }
+        }
+    }
+    return res;
+}
+
+int main()
+{
+    int knapsack;
+    cin>>knapsack;
+    int n;cin>>n;
+    vector<int> profit(n);
+    vector<int> weight(n);
+    for(int i=0;i<n;i++)
+    {
+        cin>>profit[i];
+    }
+    for(int i=0;i<n;i++)
+    {
+        cin>>weight[i];
+    }
+    
+    int output = PWRatio(knapsack,n,profit,weight);
+    cout<<output<<" ";
+    return 0;
+}
